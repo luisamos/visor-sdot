@@ -1,0 +1,2952 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R5DT3PY82V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-R5DT3PY82V');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visor de mapas de la SDOT</title>
+    <!-- ..ZONA CSS .. -->    
+    <link rel="shortcut icon" href="./assets/iconos/favicon.ico" />
+  </head>
+  <body>
+    <div id="loading-screen">
+      <div class="spinner"></div>
+      <div class="loading-text">Cargando...</div>
+    </div>
+    
+    <div class="d-flex" id="wrapper" style="display: none;">
+      <!-- sidebar  -->
+      <div class="border-end bg-white position-relative" id="sidebar-wrapper">
+        <!-- BOTON DEL MENU  -->
+        <div class="content-menu-button">
+          <button class="btn" id="sidebarToggle">
+            <span class="line-menu"></span>
+            <span class="line-menu"></span>
+          </button>
+        </div>
+        <!-- END -->
+        <!-- CONTENT SIDEBAR -->
+        <div
+          class="list-group list-group-flush"
+          style="display: none;"
+          id="contenidoSidebar"
+        >
+          <div class="p-2">
+            <div style="height: 58px;"></div>
+            <!-- FILTROS MENU -->
+            <div class="accordion" id="accordionExample">
+              <!-- Accordion Item  -->
+              <div class="accordion-item mb-1">
+                <h2
+                  class="accordion-header custom-acordion-header"
+                  id="heading01"
+                >
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse01"
+                    aria-expanded="true"
+                    aria-controls="collapse01"
+                  >
+                    <img
+                      src="./assets/iconos/locations.png"
+                      alt="sistema-centros-poblados"
+                      class="h-5 w-5 ml-1"
+                      style="margin-right: 5px"
+                    />
+                    Análisis y modelación geográfica
+                  </button>
+                </h2>
+                <div
+                  id="collapse01"
+                  class="accordion-collapse collapse"
+                  aria-labelledby=""
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <!-- AREA DE VIBILIDAD DE ATRIBUTO   -->
+                    <!--<div class="form-check custom-switch">
+                          <input class="form-check-input" type="checkbox" id="01" checked="true">
+                          <label class="form-check-label position-relative" for="01">
+                            <i class="bi bi-eye eye-open"></i>
+                            <i class="bi bi-eye-slash eye-closed"></i>01-50
+                          </label>
+                        </div>
+                        <div class="form-check custom-switch">
+                          <input class="form-check-input" type="checkbox" id="02" checked="true">
+                          <label class="form-check-label position-relative" for="02">
+                            <i class="bi bi-eye eye-open"></i>
+                            <i class="bi bi-eye-slash eye-closed"></i>01-50
+                          </label>
+                        </div>-->
+                    <!-- END AREA DE VIBILIDAD DE ATRIBUTO   -->
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="tiempoDesplazamientoCapitalCercano"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="tiempoDesplazamientoCapitalCercano"
+                            style="white-space: normal"
+                            >Tiempo de desplazamiento a la capital más
+                            cercana</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btntiempoDesplazamientoCapitalCercano"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="btntiempoDesplazamientoCapitalCercano"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="itiempoDesplazamientoCapitalCercano"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dtiempoDesplazamientoCapitalCercano"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Capa que representa el tiempo de desplazamiento
+                                estimado (minutos), expresado espacialmente a
+                                través de isócronas, en ir desde un lugar del
+                                territorio hacia la capital distrital del
+                                departamento más cercano. Para su cálculo se
+                                ha considerado el recorrido por la ruta que
+                                implica menor tiempo, empleando el medio de
+                                transporte más habitual según tipo de
+                                superficie involucrada. Las fuentes de
+                                información utilizada provienen de fuentes
+                                como el Ministerio de Transportes (MTC) y el
+                                Instituto Nacional de Estadística e Informática
+                                (INEI) principalmente. Para mayor información
+                                sobre el modelo de accesibilidad comuníquese al
+                                buzón de sugerencias.
+                                <br />
+                                Leyenda:<br />
+                                <img src="https://geosdot.servicios.gob.pe/geoserver/geoportal/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=tiempo_deplazamiento_capital_cercano">
+                                <br />
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End Item  -->
+              <!-- OMD  -->
+              <!-- Accordion Item  -->
+              <div class="accordion-item">
+                <h2
+                  class="accordion-header custom-acordion-header"
+                  id="heading41"
+                >
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse41"
+                    aria-expanded="true"
+                    aria-controls="collapse41"
+                  >
+                    <img
+                      src="./assets/iconos/locations.png"
+                      alt="sistema-centros-poblados"
+                      class="h-5 w-5 ml-1"
+                      style="margin-right: 5px"
+                    />
+                    Sistemas de centros poblados
+                  </button>
+                </h2>
+                <div
+                  id="collapse41"
+                  class="accordion-collapse collapse"
+                  aria-labelledby=""
+                  data-bs-parent="#accordionExample"
+                >
+                <div class="accordion-body">
+                  <!-- PRIMERA LINEA  -->
+                  <div class="row d-flex justify-content-between">
+                    <div class="col-auto w-80">
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="capitales"
+                        />
+                        <label class="form-check-label" for="capitales"
+                          >Capitales</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-auto w-20">
+                      <div class="dropdown">
+                        <i
+                          class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                          style="display: none;"
+                          type="button"
+                          id="btncapitales"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        ></i>
+                        <ul
+                          class="dropdown-menu"
+                          aria-labelledby="btncapitales"
+                        >
+                          <li>
+                            <a class="dropdown-item" id="icapitales" href="#"
+                              ><i class="bi bi-info-square-fill"></i>
+                              Identificar</a
+                            >
+                          </li>
+                          <!--<li><a class="dropdown-item" id="tCapitales" href="#"><i class="bi bi-brush-fill"></i> Transperencia</a></li>-->
+                          <!--<li><a class="dropdown-item" id="bCapitales" href="#"><i class="bi bi-funnel-fill"></i> Buscar</a></li>-->
+                          <li>
+                            <a class="dropdown-item" id="dcapitales" href="#"
+                              ><i class="bi bi-download"></i> Descargar</a
+                            >
+                          </li>
+                          <li class="custom-description-item">
+                            <a class="dropdown-item" href="#"
+                              ><i class="bi bi-justify"></i> Descripción</a
+                            >
+                            <div class="card custom-description-body">
+                              Base de datos de centros poblados recogidos en
+                              el Censo de Población y Vivienda 2017. Fuente: INEI - Censo de
+                              Población y Vivienda, 2017.
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END PRIMERA LINEA  -->
+                  <!-- SEGUNDA LINEA  -->
+                  <div class="row d-flex justify-content-between">
+                    <div class="col-auto w-80">
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="ccppAsentamientosDispersos"
+                        />
+                        <label
+                          class="form-check-label"
+                          for="ccppAsentamientosDispersos"
+                          style="white-space: normal"
+                          >Centros poblados y asentamientos dispersos</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-auto w-20">
+                      <div class="dropdown">
+                        <i
+                          class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                          style="display: none;"
+                          type="button"
+                          id="btnccppAsentamientosDispersos"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        ></i>
+                        <ul
+                          class="dropdown-menu"
+                          aria-labelledby="ccpp_asetamientos_diversos"
+                        >
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              id="iccppAsentamientosDispersos"
+                              href="#"
+                              ><i class="bi bi-info-square-fill"></i>
+                              Identificar</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              id="dccppAsentamientosDispersos"
+                              href="#"
+                              ><i class="bi bi-download"></i> Descargar</a
+                            >
+                          </li>
+                          <li class="custom-description-item">
+                            <a class="dropdown-item" href="#"
+                              ><i class="bi bi-justify"></i> Descripción</a
+                            >
+                            <div class="card custom-description-body">
+                              Base de datos de centros poblados recogidos en
+                              el Censo de Población y Vivienda 2017. Comprende
+                              a las viviendas particulares con ocupantes
+                              presentes. La ubicación de los centros poblados
+                              es referencial, pudiendo esta ser diferente a la
+                              ubicacion resgistrada por otras bases de datos o
+                              trabajos de campo. Fuente: INEI - Censo de
+                              Población y Vivienda, 2017.
+                              <br />
+                              Leyenda:
+                              <br />
+                              <img src="https://geosdot.servicios.gob.pe/geoserver/geoportal/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=ccpp_asetamientos_diversos">  
+                              <br />
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END SEGUNDA LINEA  -->
+                  <!-- AREA DE VIBILIDAD DE ATRIBUTO   -->
+                  <!--<div class="form-check custom-switch">
+                        <input class="form-check-input" type="checkbox" id="01" checked="true">
+                        <label class="form-check-label position-relative" for="01">
+                          <i class="bi bi-eye eye-open"></i>
+                          <i class="bi bi-eye-slash eye-closed"></i>01-50
+                        </label>
+                      </div>
+                      <div class="form-check custom-switch">
+                        <input class="form-check-input" type="checkbox" id="02" checked="true">
+                        <label class="form-check-label position-relative" for="02">
+                          <i class="bi bi-eye eye-open"></i>
+                          <i class="bi bi-eye-slash eye-closed"></i>01-50
+                        </label>
+                      </div>-->
+                  <!-- END AREA DE VIBILIDAD DE ATRIBUTO   -->
+                  <!--<div class="row d-flex justify-content-between">
+                    <div class="col-auto w-80">
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="tiempoDesplazamientoCapitalCercano"
+                        />
+                        <label
+                          class="form-check-label"
+                          for="tiempoDesplazamientoCapitalCercano"
+                          style="white-space: normal"
+                          >Tiempo de desplazamiento a la capital más
+                          cercana</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-auto w-20">
+                      <div class="dropdown">
+                        <i
+                          class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                          style="display: none;"
+                          type="button"
+                          id="btntiempoDesplazamientoCapitalCercano"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        ></i>
+                        <ul
+                          class="dropdown-menu"
+                          aria-labelledby="btntiempoDesplazamientoCapitalCercano"
+                        >
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              id="itiempoDesplazamientoCapitalCercano"
+                              href="#"
+                              ><i class="bi bi-info-square-fill"></i>
+                              Identificar</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              id="dtiempoDesplazamientoCapitalCercano"
+                              href="#"
+                              ><i class="bi bi-download"></i> Descargar</a
+                            >
+                          </li>
+                          <li class="custom-description-item">
+                            <a class="dropdown-item" href="#"
+                              ><i class="bi bi-justify"></i> Descripción</a
+                            >
+                            <div class="card custom-description-body">
+                              Capa que representa el tiempo de desplazamiento
+                              estimado (minutos), expresado espacialmente a
+                              través de isócronas, en ir desde un lugar del
+                              territorio hacia la capital distrital del
+                              departamento más cercano. Para su cálculo se
+                              ha considerado el recorrido por la ruta que
+                              implica menor tiempo, empleando el medio de
+                              transporte más habitual según tipo de
+                              superficie involucrada. Las fuentes de
+                              información utilizada provienen de fuentes
+                              como el Ministerio de Transportes (MTC) y el
+                              Instituto Nacional de Estadística e Informática
+                              (INEI) principalmente. Para mayor información
+                              sobre el modelo de accesibilidad comuníquese al
+                              buzón de sugerencias.
+                              <br />
+                              Leyenda:<br />
+                              <img src="https://geosdot.servicios.gob.pe/geoserver/geoportal/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=tiempo_deplazamiento_capital_cercano">
+                              <br />
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>-->
+                  <div class="row d-flex justify-content-between">
+                    <div class="col-auto w-80">
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="ccppCategorizacionRecategorizacion"
+                        />
+                        <label
+                          class="form-check-label"
+                          for="ccppCategorizacionRecategorizacion"
+                          style="white-space: normal"
+                          >Centros poblados categorizados o recategorizados</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-auto w-20">
+                      <div class="dropdown">
+                        <i
+                          class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                          style="display: none;"
+                          type="button"
+                          id="btnccppCategorizacionRecategorizacion"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        ></i>
+                        <ul
+                          class="dropdown-menu"
+                          aria-labelledby="btnccppCategorizacionRecategorizacion"
+                        >
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              id="iccppCategorizacionRecategorizacion"
+                              href="#"
+                              ><i class="bi bi-info-square-fill"></i>
+                              Identificar</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              id="dccppCategorizacionRecategorizacion"
+                              href="#"
+                              ><i class="bi bi-download"></i> Descargar</a
+                            >
+                          </li>
+                          <li class="custom-description-item">
+                            <a class="dropdown-item" href="#"
+                              ><i class="bi bi-justify"></i> Descripción</a
+                            >
+                            <div class="card custom-description-body">
+                              Base de datos de categorizaciones y
+                              recategorizaciones de centros poblados. La base
+                              de datos ha sido construida a partir de la
+                              integración de las resoluciones ejecutivas
+                              regionales que obran en la Secretaría de
+                              Demarcación y Organización Territorial de la
+                              Presidencia del Consejo de Ministros. Esta base
+                              de datos está en constante actualización y
+                              mantenimiento, si tiene alguna consulta o aporte
+                              le pedimos se comunique con la SDOT mediante el
+                              buzón de sugerencias. La localización de los
+                              centros poblados es referencial, extraida de la
+                              base de datos de centros poblados recogidos en
+                              el Censo de Población y Vivienda 2017.
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row d-flex justify-content-between">
+                    <div class="col-auto w-80">
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="ccppReconocimientoLey"
+                        />
+                        <label
+                          class="form-check-label"
+                          for="ccppReconocimientoLey"
+                          style="white-space: normal"
+                          >Reconocimiento de centros pobados en leyes</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-auto w-20">
+                      <div class="dropdown">
+                        <i
+                          class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                          style="display: none;"
+                          type="button"
+                          id="btnccppReconocimientoLey"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        ></i>
+                        <ul
+                          class="dropdown-menu"
+                          aria-labelledby="btnccppReconocimientoLey"
+                        >
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              id="iccppReconocimientoLey"
+                              href="#"
+                              ><i class="bi bi-info-square-fill"></i>
+                              Identificar</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              id="dccppReconocimientoLey"
+                              href="#"
+                              ><i class="bi bi-download"></i> Descargar</a
+                            >
+                          </li>
+                          <li class="custom-description-item">
+                            <a class="dropdown-item" href="#"
+                              ><i class="bi bi-justify"></i> Descripción</a
+                            >
+                            <div class="card custom-description-body">
+                              Centros poblados que han sido mencionados en
+                              leyes. La localización de los centros poblados
+                              es referencia, extraida de la base de datos de
+                              centros poblados recogidos en el Censo de
+                              Población y Vivienda 2017.
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <!--<div class="row d-flex justify-content-between">
+                    <div class="col-auto w-80">
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="nucleosPoblados"
+                        />
+                        <label
+                          class="form-check-label"
+                          for="nucleosPoblados"
+                          style="white-space: normal"
+                          >Núcleos poblados</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-auto w-20">
+                      <div class="dropdown">
+                        <i
+                          class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                          style="display: none;"
+                          type="button"
+                          id="btnnucleosPoblados"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        ></i>
+                        <ul
+                          class="dropdown-menu"
+                          aria-labelledby="btnnucleosPoblados"
+                        >
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              id="inucleosPoblados"
+                              href="#"
+                              ><i class="bi bi-info-square-fill"></i>
+                              Identificar</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              id="dnucleosPoblados"
+                              href="#"
+                              ><i class="bi bi-download"></i> Descargar</a
+                            >
+                          </li>
+                          <li class="custom-description-item">
+                            <a class="dropdown-item" href="#"
+                              ><i class="bi bi-justify"></i> Descripción</a
+                            >
+                            <div class="card custom-description-body">
+                              Los núcleos poblados han sido construidos con
+                              información de gabinete a partir de la Base
+                              de datos de centros poblados recogidos en el
+                              Censo de Población y Vivienda 2017 y la
+                              información de viviendas georreferenciadas
+                              del Instituto Nacional de Estadística e
+                              Informática (INEI) correspondientes al último
+                              censo nacional de población y vivienda
+                              (elaborado para el precenso). La información
+                              es referencial, la misma debe ser refrendada
+                              por los gobiernos regionales en los estudios
+                              que desarrolla y con trabajo de campo.
+                              <br />
+                              Leyenda:<br />
+                              <img src="https://geosdot.servicios.gob.pe/geoserver/geoportal/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=nucleos_poblados">
+                              <br />
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>-->
+                </div>
+                </div>
+              </div>
+              <!-- End Accordion Item  -->
+              <!-- End OMD  -->
+              <!-- Accordion Item -->
+              <div class="accordion-item">
+                <h2
+                  class="accordion-header custom-acordion-header"
+                  id="heading02"
+                >
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse02"
+                    aria-expanded="true"
+                    aria-controls="collapse02"
+                  >
+                    <img
+                      src="./assets/iconos/infraestructura_transporte.svg"
+                      alt="infraestructura-transporte"
+                      class="h-5 w-5 ml-1"
+                      style="margin-right: 5px"
+                    />
+                    Infraestructura de transporte
+                  </button>
+                </h2>
+                <div
+                  id="collapse02"
+                  class="accordion-collapse collapse"
+                  aria-labelledby=""
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="viasNacional"
+                          />
+                          <label class="form-check-label" for="viasNacional"
+                            >Vías nacional</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btnviasNacional"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="iviasNacional"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dviasNacional"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Base Cartografíca de la Red Vial Nacional
+                                actualizada por PROVÍAS NACIONAL a Julio 2022,
+                                según Clasificador de Rutas aprobado mediante
+                                Decreto Supremo 011-2016-MTC y sus
+                                modificatorias.
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="viasDepartamental"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="viasDepartamental"
+                            >Vía departamental</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btnviasDepartamental"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="iviasDepartamental"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dviasDepartamental"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Base Cartografíca de la Red Vial Nacional
+                                actualizada por PROVÍAS NACIONAL a Julio 2022,
+                                según Clasificador de Rutas aprobado mediante
+                                Decreto Supremo 011-2016-MTC y sus
+                                modificatorias.
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="viasVecinal"
+                          />
+                          <label class="form-check-label" for="viasVecinal"
+                            >Vía vecinal</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btnviasVecinal"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="iviasVecinal"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dviasVecinal"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Base Cartografíca de la Red Vial Nacional
+                                actualizada por PROVÍAS NACIONAL a Julio 2022,
+                                según Clasificador de Rutas aprobado mediante
+                                Decreto Supremo 011-2016-MTC y sus
+                                modificatorias.
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="aerodromos"
+                          />
+                          <label class="form-check-label" for="aerodromos"
+                            >Aeródromos</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btnaerodromos"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a class="dropdown-item" id="iaerodromos" href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a class="dropdown-item" id="daerodromos" href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Aeródromos del Perú actualizado al año 2022,
+                                elaborado por el Ministerio de Transportes y
+                                Comunicaciones.
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End Item  -->
+              <!-- Accordion Item -->
+              <div class="accordion-item">
+                <h2
+                  class="accordion-header custom-acordion-header"
+                  id="heading03"
+                >
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse03"
+                    aria-expanded="true"
+                    aria-controls="collapse03"
+                  >
+                    <img
+                      src="./assets/iconos/aspectos_socio_culturales.svg"
+                      alt=""
+                      class="h-5 w-5 ml-1"
+                      style="margin-right: 5px"
+                    />
+                    Aspectos socio-culturales
+                  </button>
+                </h2>
+                <div
+                  id="collapse03"
+                  class="accordion-collapse collapse"
+                  aria-labelledby=""
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="comunidadesNativas"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="comunidadesNativas"
+                            >Comunidades Nativas</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btncomunidadesNativas"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="icomunidadesNativas"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Base de datos de comunidades nativas elaborada
+                                por el Ministerio de Agricultura y Riesgo,
+                                actualizado al 2024.
+                                <a
+                                  href="https://georural.midagri.gob.pe/sicar/"
+                                  target="_blank"
+                                  >Más información</a
+                                >
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="comunidadesCampesinas"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="comunidadesCampesinas"
+                            >Comunidades Campesinas</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btncomunidadesCampesinas"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="icomunidadesCampesinas"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Base de datos de comunidades campesinas
+                                elaborada por el Ministerio de Agricultura y
+                                Riesgo, actualizado al 2024.
+                                <a
+                                  href="https://georural.midagri.gob.pe/sicar/"
+                                  target="_blank"
+                                  >Más información</a
+                                >
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End Item  -->
+              <!-- Accordion Item -->
+              <div class="accordion-item">
+                <h2
+                  class="accordion-header custom-acordion-header"
+                  id="heading04"
+                >
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse04"
+                    aria-expanded="true"
+                    aria-controls="collapse04"
+                  >
+                    <img
+                      src="./assets/iconos/riesgos.svg"
+                      alt=""
+                      class="h-5 w-5 ml-1"
+                      style="margin-right: 5px"
+                    />
+                    Riesgos
+                  </button>
+                </h2>
+                <div
+                  id="collapse04"
+                  class="accordion-collapse collapse"
+                  aria-labelledby=""
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="evaluacionRiesgos"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="evaluacionRiesgos"
+                            style="white-space: normal"
+                            >Informe de evaluación de riesgos</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btnevaluacionRiesgos"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="ievaluacionRiesgos"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="devaluacionRiesgos"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Informes de Evaluación de Riesgo elaborados en
+                                el marco de la metodología del "Manual para la
+                                evaluación de riesgos originados por Fenómenos
+                                Naturales" 2da Versión, el cual permite:
+                                analizar parámetros de evaluación y
+                                susceptibilidad (factores condicionantes y
+                                desencadenantes) de los fenómenos o peligros,
+                                analizar la vulnerabilidad de elementos
+                                expuestos al fenómeno en función a la fragilidad
+                                y resilencia y determinar y zonificar los
+                                niveles de riesgos.
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="zonasRiesgosNoMitigable"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="zonasRiesgosNoMitigable"
+                            >Zonas de riesgos no mitigable</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btnzonasRiesgosNoMitigable"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="izonasRiesgosNoMitigable"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dzonasRiesgosNoMitigable"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Zonas intangibles para fines de vivienda, cuyo
+                                uso, posesión y transferencia para fines de
+                                vivienda queda expresamente prohibida, y el
+                                CENEPRED declara la intangibilidad para fines de
+                                vivienda en zonas declaradas de riesgo no
+                                mitigables.
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End Item  -->
+              <!-- Accordion Item -->
+              <div class="accordion-item">
+                <h2
+                  class="accordion-header custom-acordion-header"
+                  id="heading05"
+                >
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse05"
+                    aria-expanded="true"
+                    aria-controls="collapse05"
+                  >
+                    <img
+                      src="./assets/iconos/peligros.svg"
+                      alt=""
+                      class="h-5 w-5 ml-1"
+                      style="margin-right: 5px"
+                    />
+                    Peligros
+                  </button>
+                </h2>
+                <div
+                  id="collapse05"
+                  class="accordion-collapse collapse"
+                  aria-labelledby=""
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="inventarioInundaciones"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="inventarioInundaciones"
+                            style="white-space: normal"
+                            >Inventario de inundaciones</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btninventarioInundaciones"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="iinventarioInundaciones"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dinventarioInundaciones"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Contiene información sobre los peligros
+                                inventariados, identificados durante los
+                                trabajos de campo y gabinete de las zonas
+                                vulnerables a inundacion. La informacion es la
+                                recopilacion de datos de los diferentes
+                                proyectos que se ejecutan en la Direccion de
+                                Geologia Ambiental los cuales tienen ambitos a
+                                nivel de cuencas(INGEMMET). Fuente:
+                                INGEMMET,ANA, INDECI, MTC, Gobierno Regional
+                                Ica, Municipalidad Provincial de Zarumilla,
+                                Municipalidad Distrital de San Juan de
+                                Lurigancho y Municipalidad Distrital de
+                                Ascensión.
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="tramosCriticosInundaciones"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="tramosCriticosInundaciones"
+                            style="white-space: normal"
+                            >Tramos críticos de inundaciones</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btntramosCriticosInundaciones"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="itramosCriticosInundaciones"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dtramosCriticosInundaciones"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Tramos Críticos: Son los ámbitos, en los cuales se han identificado desbordamiento de cauces por la recurrencia
+                                de fenómenos hidrometeorológicos y de eventos extremos, que hacen necesaria la ejecución de actividades permanentes
+                                de descolmatación de cauces, mantenimiento de las pendientes de equilibrio y construcción de obras permanentes de
+                                control y corrección de cauce.<br />
+                                Fuente: Autoridad Nacional del Agua (ANA)<br />
+                                Tramos críticos realizados a partir de los puntos críticos 2023 (actualizado al mes de agosto)
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="puntosCriticosInundaciones"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="puntosCriticosInundaciones"
+                            style="white-space: normal"
+                            >Puntos críticos de inundaciones</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btnpuntosCriticosInundaciones"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="ipuntosCriticosInundaciones"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dpuntosCriticosInundaciones"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Puntos Críticos: Son los ámbitos, en los cuales se han identificado desbordamiento de cauces por la recurrencia de fenómenos
+                                hidrometeorológicos y de eventos extremos, que hacen necesaria la ejecución de actividades permanentes de descolmatación de
+                                cauces, mantenimiento de las pendientes de equilibrio y construcción de obras permanentes de control y corrección de cauce.<br />
+                                Puntos críticos 2016, obtenido del documento "Identificación de zonas vulnerables ante inundaciones en ríos y quebradas 2016"<br />
+                                Fuente: Autoridad Nacional del Agua (ANA)
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="areasExposicionInundaciones"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="areasExposicionInundaciones"
+                            style="white-space: normal"
+                            >Área de exposición a inundaciones</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btnareasExposicionInundaciones"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="iareasExposicionInundaciones"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dareasExposicionInundaciones"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                La informacion es la recopilacion de datos de los diferentes informes técnicos y/o estudios que se ejecutan, se
+                                cuenta con areas expuestas ante inundaciones en las regiones: Amazonas, Ayacucho, Callao, Cajamarca, Cusco,
+                                Huancavelica, Huanuco, Ica, Lambayeque, Lima, Pasco, Piura, Puno, San Martín, Tumbes, Ucayali.<br />
+                                Fuente: ANA, INGEMMET,  IGP, INDECI-PNUD, INADUR- MP Tumbes, GORE Callao, GORE Ica, GORE Ucayali, MP Huanta, MD Jayanca y MD Patapo.
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="areasExposicionMovimientoMasa"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="areasExposicionMovimientoMasa"
+                            style="white-space: normal"
+                            >Área de exposición de movimiento de masa</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btnareasExposicionMovimientoMasa"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="iareasExposicionMovimientoMasa"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dareasExposicionMovimientoMasa"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                La informacion es la recopilacion de datos de los diferentes informes técnicos y/o estudios que se
+                                ejecutan, se cuenta con areas de peligros geológicos en los distritos de Lurigancho, Rimac, Ventanilla,
+                                San Mateo (Dpto. Lima), Cajamarca (Dpto.Cajamarca), Cusco (Dpto. Cusco), Huánuco (Dpto. Huánuco) y en
+                                el Dpto. San Martín.<br />
+                                Fuente: CENEPRED, INDECI, INGEMMET, INEI (Informacion de Poblacion y Vivienda en areas afectadas por
+                                Huayco en la quebrada Rayos de Sol-Lurigancho), GORE Callao, MP Cusco, MD Rimac.
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="zonasCriticasMovimientoMasa"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="zonasCriticasMovimientoMasa"
+                            style="white-space: normal"
+                            >Zonas críticas de movimiento de masa</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btnzonasCriticasMovimientoMasa"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="izonasCriticasMovimientoMasa"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dzonasCriticasMovimientoMasa"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Las áreas críticas se refieren a zonas que están expuestas a los peligros que puede afectar a población
+                                u obra de ingeniería, consideran con mayor susceptibilidad a la ocurrencia de desastres, por lo que es
+                                necesario que se realicen en ellas obras de prevención y/o mitigación.<br />
+                                Fuente: INGEMMET (actualizado al 2022).
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="inventarioMovimientoMasa"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="inventarioMovimientoMasa"
+                            style="white-space: normal"
+                            >Inventario de movimiento de masa</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btninventarioMovimientoMasa"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="iinventarioMovimientoMasa"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dinventarioMovimientoMasa"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Las áreas críticas se refieren a zonas que están expuestas a los peligros que puede afectar a población u obra
+                                de ingeniería, consideran con mayor susceptibilidad a la ocurrencia de desastres, por lo que es necesario que
+                                se realicen en ellas obras de prevención y/o mitigación.<br />
+                                Fuente: INGEMMET (actualizado al 2022)
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End Item  -->
+              <!-- Accordion Item -->
+              <div class="accordion-item">
+                <h2
+                  class="accordion-header custom-acordion-header"
+                  id="heading10"
+                >
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse10"
+                    aria-expanded="true"
+                    aria-controls="collapse10"
+                  >
+                    <img
+                      src="./assets/iconos/servicios.svg"
+                      alt=""
+                      class="h-5 w-5 ml-1"
+                      style="margin-right: 5px"
+                    />
+                    Servicios
+                  </button>
+                </h2>
+                <div
+                  id="collapse10"
+                  class="accordion-collapse collapse"
+                  aria-labelledby=""
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="serviciosEducativos"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="serviciosEducativos"
+                            >Servicios educativos</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"                            
+                            id="btnserviciosEducativos"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="iserviciosEducativos"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dserviciosEducativos"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Conjunto de actividades educativas diseñadas y organizadas, para lograr un objetivo de aprendizaje.
+                                <br/>
+                                Leyenda:<br/>
+                                <img src="https://geosdot.servicios.gob.pe/geoserver/geoportal/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=servicios_educativos">
+                                Fuente: Ministerio de Educación
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="localesEducativos"
+                          />
+                          <label class="form-check-label" for="localesEducativos"
+                            >Locales educativos</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btnlocalesEducativos"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="ilocalesEducativos"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dlocalesEducativos"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Inmueble en el cual funciona uno o más establecimientos educativos.
+                                <br/>
+                                Leyenda:<br/>
+                                <img src="https://geosdot.servicios.gob.pe/geoserver/geoportal/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=locales_educativos"><br />
+                                Fuente: Ministerio de Educación.
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="institucionesPrestadorasServiciosSalud"
+                          />
+                          <label class="form-check-label" for="institucionesPrestadorasServiciosSalud"
+                            >Instituciones prestadoras de servicios de salud</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btninstitucionesPrestadorasServiciosSalud"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="iinstitucionesPrestadorasServiciosSalud"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dinstitucionesPrestadorasServiciosSalud"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Base de datos de Instituciones prestadoras de servicios de salud elaborado por la Superintendencia Nacional de Salud - SUSALUD. Actualizado al año 2023.
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End Item  -->
+              <!-- Accordion Item -->
+              <div class="accordion-item">
+                <h2
+                  class="accordion-header custom-acordion-header"
+                  id="heading11"
+                >
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse11"
+                    aria-expanded="true"
+                    aria-controls="collapse11"
+                  >
+                    <img
+                      src="./assets/iconos/limite_censales.svg"
+                      alt=""
+                      class="h-5 w-5 ml-1"
+                      style="margin-right: 5px"
+                    />
+                    Límite censales
+                  </button>
+                </h2>
+                <div
+                  id="collapse11"
+                  class="accordion-collapse collapse show"
+                  aria-labelledby=""
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="limiteDepartamental"
+                            checked="checked"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="limiteDepartamental"
+                            >Límite departamental</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            type="button"
+                            id="btnlimiteDepartamental"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="ilimiteDepartamental"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dlimiteDepartamental"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Límites censales departamentales elaborados por
+                                el Instituto Nacional de Estadística e
+                                Informática - INEI. Versión 2023. Estos límites
+                                solo tienen un carácter referencial no
+                                demarcatorio.
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="limiteProvincial"
+                          />
+                          <label class="form-check-label" for="limiteProvincial"
+                            >Límite provincial</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btnlimiteProvincial"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="ilimiteProvincial"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dlimiteProvincial"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Límites censales provinciales elaborados por el
+                                Instituto Nacional de Estadística e Informática
+                                - INEI. Versión 2023. Estos límites
+                                solo tienen un carácter referencial no
+                                demarcatorio.
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto w-80">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="limiteDistrital"
+                          />
+                          <label class="form-check-label" for="limiteDistrital"
+                            >Límite distrital</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-auto w-20">
+                        <div class="dropdown">
+                          <i
+                            class="bi bi-three-dots-vertical btn btn-secondary custom-dosts-vertical btn-sm"
+                            style="display: none;"
+                            type="button"
+                            id="btnlimiteDistrital"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          ></i>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="ilimiteDistrital"
+                                href="#"
+                                ><i class="bi bi-info-square-fill"></i>
+                                Identificar</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                id="dlimiteDistrital"
+                                href="#"
+                                ><i class="bi bi-download"></i> Descargar</a
+                              >
+                            </li>
+                            <li class="custom-description-item">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bi bi-justify"></i> Descripción</a
+                              >
+                              <div class="card custom-description-body">
+                                Límites censales distritales elaborados por el
+                                Instituto Nacional de Estadística e Informática
+                                - INEI. Versión 2023. Estos límites
+                                solo tienen un carácter referencial no
+                                demarcatorio.
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End Item  -->
+              <div class="accordion-item" id="interoperabilidad" style="display: none;">
+                <h2
+                  class="accordion-header custom-acordion-header"
+                  id="heading99"
+                >
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse99"
+                    aria-expanded="true"
+                    aria-controls="collapse99"
+                  >
+                    <img
+                      src="./assets/iconos/mundo.svg"
+                      alt=""
+                      class="h-5 w-5 ml-1"
+                      style="margin-right: 5px"
+                    />
+                    Interoperabilidad
+                  </button>
+                </h2>
+                <div
+                  id="collapse99"
+                  class="accordion-collapse collapse show"
+                  aria-labelledby=""
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body" id="capasInteroperabilidad">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END FILTROS MENU -->
+          </div>
+        </div>
+        <!-- END CONTENT SIDEBAR -->
+      </div>
+
+      <!-- CONTENT HEADER +  MAP-->
+      <div id="page-content-wrapper">
+        <!-- Top navigation-->
+        <nav
+          class="navbar navbar-expand-md navbar-light bg-light border-bottom background-color-red"
+        >
+          <div class="container-fluid custom-container-header-menu">
+            <button
+              class="navbar-toggler ms-auto"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="custom-content-logo">
+              <img class="p-2 img-movil" src="./assets/images/logo_min.png" alt="" />
+              <img class="p-2 img-escritorio" src="./assets/images/logo_min.png" alt="">
+            </div>
+            <div
+              class="collapse navbar-collapse ms-auto"
+              id="navbarSupportedContent"
+            >
+              <ul class="navbar-nav ms-auto mt-2 mt-lg-0 pl-4">
+                <li class="nav-item dropdown custom-item-header-widget">
+                  <a
+                    class="nav-link dropdown-toggle custom-item-header-widget-icon"
+                    id="btnFullscreen"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <img
+                      src="./assets/iconos/pantalla_completa.svg"
+                      alt=""
+                      class=""
+                      style="
+                        margin-right: 5px;
+                        width: 20px;
+                        height: 20px;
+                        filter: invert(1) grayscale(100%) brightness(1000%);
+                      "
+                    />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- Page content-->
+        <div class="container-fluid w-100 p-0">
+          <div class="container-fluid p-0 w-100 container-map">
+            <div id="map"></div>
+            <div id="legend" class="legend">
+              <p><span style="background-color: #ff0000; width: 20px; height: 20px; display: inline-block;"></span> Layer 1</p>
+              <p><span style="background-color: #00ff00; width: 20px; height: 20px; display: inline-block;"></span> Layer 2</p>
+          </div>
+            <div id="mouse-position"></div>
+            <div id="popup" class="ol-popup">
+              <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+              <div id="popup-content"></div>
+            </div>
+            <div class="position-absolute custom-content-menu-widgets pt-4">
+              <button
+                class="custom-menu-widget-item position-relative w-10 mb-2"
+                id="vistaGeneral"
+              >
+                <img
+                  src="./assets/iconos/vista_general.svg"
+                  alt=""
+                  class="w-100"
+                  style="
+                    margin-right: 5px;
+                    filter: invert(1) grayscale(100%) brightness(1000%);
+                  "
+                />
+                <div class="custom-menu-widget-item-tooltip card">
+                  Vista General
+                </div>
+              </button>
+              <button
+                class="custom-menu-widget-item position-relative w-10 mb-2"
+              >
+                <img
+                  src="./assets/iconos/capas_base.svg"
+                  alt=""
+                  class="w-100 custom-menu-widget-item-image-icon"
+                  style="
+                    margin-right: 5px;
+                    filter: invert(1) grayscale(100%) brightness(1000%);
+                  "
+                />
+                <div class="custom-menu-widget-item-tooltip card">
+                  Capas base
+                </div>
+                <div class="custom-menu-widget-item-popup card">
+                  <div class="card-header custom-header">
+                    <span class="text-center"><strong>Capas base</strong></span>
+                    <i class="bi bi-x-lg custom-btn-widget-item-poup-close"></i>
+                  </div>
+                  <div class="card-body">
+                    <div class="list-group" id="capasBase">
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action"
+                        id="capaBase01"
+                      >
+                        <div class="d-flex align-items-center">
+                          <div class="col-md-4">
+                            <img
+                              src="./assets/images/arcgis_light_gray.png"
+                              alt="Imagen"
+                              class="img-fluid rounded-circle"
+                              style="width: 40px; height: 40px"
+                            />
+                          </div>
+                          <div>
+                            <small class="col-md-12" style="text-align: left"
+                              >Mapa ArcGIS gris claro</small
+                            >
+                          </div>
+                        </div>
+                      </a>
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action active"
+                        id="capaBase02"
+                      >
+                        <div class="d-flex align-items-center">
+                          <div class="col-md-4">
+                            <img
+                              src="./assets/images/bingMapAerial.png"
+                              alt="Imagen"
+                              class="img-fluid rounded-circle"
+                              style="width: 40px; height: 40px"
+                            />
+                          </div>
+                          <div>
+                            <small class="col-md-12" style="text-align: left"
+                              >Mapa BingMap satelital sin etiqueta</small
+                            >
+                          </div>
+                        </div>
+                      </a>
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action"
+                        id="capaBase03"
+                      >
+                        <div class="d-flex align-items-center">
+                          <div class="col-md-4">
+                            <img
+                              src="./assets/images/bingMapAerialWithLabelsOnDemand.png"
+                              alt="Imagen"
+                              class="img-fluid rounded-circle"
+                              style="width: 40px; height: 40px"
+                            />
+                          </div>
+                          <div>
+                            <small class="col-md-12" style="text-align: left"
+                              >Mapa BingMap satelital con etiqueta</small
+                            >
+                          </div>
+                        </div>
+                      </a>
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action"
+                        id="capaBase04"
+                      >
+                        <div class="d-flex align-items-center">
+                          <div class="col-md-4">
+                            <img
+                              src="./assets/images/bingMapCanvasDark.png"
+                              alt="Imagen"
+                              class="img-fluid rounded-circle"
+                              style="width: 40px; height: 40px"
+                            />
+                          </div>
+                          <div>
+                            <small class="col-md-12" style="text-align: left"
+                              >Mapa BingMap de noche</small
+                            >
+                          </div>
+                        </div>
+                      </a>
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action"
+                        id="capaBase05"
+                      >
+                        <div class="d-flex align-items-center">
+                          <div class="col-md-4">
+                            <img
+                              src="./assets/images/osm.png"
+                              alt="Imagen"
+                              class="img-fluid rounded-circle"
+                              style="width: 40px; height: 40px"
+                            />
+                          </div>
+                          <div>
+                            <small class="col-md-12" style="text-align: left"
+                              >Mapa de OpenStreetMap</small
+                            >
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button
+                class="custom-menu-widget-item position-relative w-10 mb-2"
+              >
+                <img
+                  src="./assets/iconos/filtro_general.svg"
+                  alt=""
+                  class="w-100 custom-menu-widget-item-image-icon"
+                  style="
+                    margin-right: 5px;
+                    filter: invert(1) grayscale(100%) brightness(1000%);
+                  "
+                />
+                <div class="custom-menu-widget-item-tooltip card">
+                  Filtro territorial
+                </div>
+                <div class="custom-menu-widget-item-popup card">
+                  <div class="card-header custom-header">
+                    <span class="text-center"
+                      ><strong>Busqueda por Regiones</strong></span
+                    >
+                    <i class="bi bi-x-lg custom-btn-widget-item-poup-close"></i>
+                  </div>
+                  <div class="card-body">
+                    <div class="form-floating mb-3">
+                      <select
+                        class="form-select"
+                        id="listaDepartamentos"
+                        aria-label=""
+                      >
+                        <option value="-1" selected disabled>[Elegir]</option>
+                        <option value="-1">PERÚ</option>
+                      </select>
+                      <label for="listaDepartamentos">Departamento:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <select
+                        class="form-select"
+                        id="listaProvincias"
+                        aria-label=""
+                      >
+                        <option value="-1" selected>[Elegir]</option>
+                      </select>
+                      <label for="listaProvincias">Provincia:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <select
+                        class="form-select"
+                        id="listaDistritos"
+                        aria-label=""
+                      >
+                        <option value="-1" selected>[Elegir]</option>
+                      </select>
+                      <label for="listaDistritos">Distrito:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <select
+                        class="form-select"
+                        id="listaCentrosPoblados"
+                        data-ub-select-search="true"
+                      >
+                        <option value="-1" selected>[Elegir]</option>
+                      </select>
+                      <label for="listaCentrosPoblados">Centro Poblado:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <a href="#" class="btn btn-secondary" id="limpiarCCPP"
+                        ><i class="bi bi-trash"></i> Limpiar</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button
+                class="custom-menu-widget-item position-relative w-10 mb-2"
+              >
+                <img
+                  src="./assets/iconos/graficar_mapa.svg"
+                  alt=""
+                  class="w-100 custom-menu-widget-item-image-icon"
+                  style="margin-right: 5px"
+                />
+                <div class="custom-menu-widget-item-tooltip card">
+                  Graficar sobre el mapa
+                </div>
+                <div
+                  class="custom-menu-widget-item-popup card"
+                  id="graficarMapa"
+                  style="max-height: 200px; overflow-y: auto"
+                >
+                  <div class="card-header custom-header">
+                    <span class="text-center"
+                      ><strong>Graficar sobre el mapa</strong></span
+                    >
+                    <i class="bi bi-x-lg custom-btn-widget-item-poup-close"></i>
+                  </div>
+                  <div class="card-body">
+                    <div class="input-group mb-3">
+                      <label class="input-group-text" for="tipoGeometria"
+                        >Tipo de geometría</label
+                      >
+                      <select class="form-select" id="tipoGeometria">
+                        <option value="None" selected disabled>[Elegir]</option>
+                        <option value="Point">Punto</option>
+                        <option value="LineString">Línea</option>
+                        <option value="Polygon">Polígono</option>
+                        <!--<option value="Circle">Circulo</option>-->
+                      </select>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <a
+                        href="#"
+                        class="btn btn-secondary disabled"
+                        id="limpiarDibujo"
+                        ><i class="bi bi-trash"></i> Limpiar</a
+                      >
+                      <a href="#" class="btn btn-info" id="descargarDibujo"
+                        ><i class="bi bi-download"></i> Descargar</a
+                      >
+                    </div>
+                    <div class="mb-3">
+                      <div id="mensajeGraficar"></div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button
+                class="custom-menu-widget-item position-relative w-10 mb-2"
+              >
+                <img
+                  src="./assets/iconos/cargar_capa.svg"
+                  alt=""
+                  class="w-100 custom-menu-widget-item-image-icon"
+                  style="margin-right: 5px"
+                />
+                <div class="custom-menu-widget-item-tooltip card">
+                  Cargar tu información shp, csv
+                </div>
+                <div
+                  class="custom-menu-widget-item-popup card"
+                  style="max-height: 250px; overflow-y: auto"
+                >
+                  <div class="card-header custom-header">
+                    <span class="text-center"
+                      ><strong>Cargar archivo</strong></span
+                    >
+                    <i class="bi bi-x-lg custom-btn-widget-item-poup-close"></i>
+                  </div>
+                  <div class="card-body">
+                    <div class="mb-3">
+                      <label for="archivoZipKml" class="form-label">
+                        Cargar un archivo comprimido (.zip) de formato ShapeFile</label
+                      >
+                      <input
+                        class="form-control"
+                        type="file"
+                        id="archivoShpCsv"
+                      />
+                    </div>
+                    <div class="form-floating mb-3">
+                      <a href="#" class="btn btn-primary" id="subirArchivo"
+                        ><i class="bi bi-upload"></i> Cargar</a
+                      >
+                      <a
+                        href="#"
+                        class="btn btn-secondary disabled"
+                        id="limpiarArchivo"
+                        ><i class="bi bi-trash"></i> Limpiar</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button
+                class="custom-menu-widget-item position-relative w-10 mb-2"
+              >
+                <img
+                  src="./assets/iconos/conectar_serv_wms_rest.svg"
+                  alt=""
+                  class="w-100 custom-menu-widget-item-image-icon"
+                  style="margin-right: 5px"
+                />
+                <div class="custom-menu-widget-item-tooltip card">
+                  Conectar a un servicio web de mapa
+                </div>
+                <div class="custom-menu-widget-item-popup card">
+                  <div class="card-header custom-header">
+                    <span class="text-center"
+                      ><strong>Agregar servicios OGC y/o Rest</strong></span
+                    >
+                    <i class="bi bi-x-lg custom-btn-widget-item-poup-close"></i>
+                  </div>
+                  <div class="card-body">
+                    <div class="form-floating mb-3">
+                      <select
+                        class="form-select"
+                        id="tipoServicio"
+                        aria-label="Tipo de servicio"
+                      >
+                        <option value="wms" selected>OGC: WMS</option>
+                        <!-- <option value="wfs">OGC: WFS</option> -->
+                        <option value="rest">Rest ArcGIS</option>
+                      </select>
+                      <label for="tipoServicio">Tipo de servicio:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input
+                        type="url"
+                        class="form-control"
+                        id="direccionWebCapa"
+                        placeholder="https://www.gob.pe/servicio/wms?"
+                      />
+                      <label for="direccionWebCapa"
+                        >Dirección web de la capa:</label
+                      >
+                      <div class="invalid-feedback">
+                        <strong>Error, </strong> ingresar una dirección web
+                        correcta.
+                      </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <a href="#" class="btn btn-primary" id="conectarServicio">
+                        <i class="bi bi-box-arrow-down"></i
+                        >Conectar
+                      </a>
+                      <a
+                        href="#"
+                        class="btn btn-secondary"
+                        id="limpiarServicio"
+                        ><i class="bi bi-trash"></i> Limpiar</a
+                      >
+                    </div>
+                    <div class="form-floating mb-3" style="display: none;" id="capasDisponibles">
+                      <select
+                        class="form-select"
+                        id="capasTematicas"
+                        aria-label="Capas disponibles"                        
+                      ></select>
+                      <label for="tipoServicio">Capas disponibles:</label>
+                    </div>
+                    <div class="form-floating mb-3" style="display: none;" id="grupoAgregar">
+                      <a href="#" class="btn btn-success" id="agregarCapas"
+                        ><i class="bi bi-plus"></i> Agregar al contenedor</a
+                      >
+                    </div>
+                    <div class="form-floating mb-3">
+                      <div id="mensajeServicioWeb"></div>
+                    </div>                    
+                  </div>
+                </div>
+              </button>
+              <button
+                class="custom-menu-widget-item position-relative w-10 mb-2"
+              >
+                <img
+                  src="./assets/iconos/extraer_coordenadas.svg"
+                  alt=""
+                  class="w-100 custom-menu-widget-item-image-icon"
+                  style="margin-right: 5px"
+                />
+                <div class="custom-menu-widget-item-tooltip card">
+                  Ubicar coordenadas
+                </div>
+                <div class="custom-menu-widget-item-popup card">
+                  <div class="card-header custom-header">
+                    <span class="text-center"
+                      ><strong>Ubicar coordenadas</strong></span
+                    >
+                    <i class="bi bi-x-lg custom-btn-widget-item-poup-close"></i>
+                  </div>
+                  <div class="card-body">
+                    <div class="form-floating mb-3">
+                      <select class="form-select" id="proyeccion" aria-label="">
+                        <option value="-1" selected disabled>[Elegir]</option>
+                        <option value="01">Geográfica</option>
+                        <option value="02">UTM</option>
+                      </select>
+                      <label for="listaDepartamentos">Proyección WGS 84:</label>
+                    </div>
+                    <div
+                      class="form-floating mb-3"
+                      style="display: none"
+                      id="grupoZona"
+                    >
+                      <select class="form-select" id="zona" aria-label="">
+                        <option value="-1" selected disabled>[Elegir]</option>
+                        <option value="17S">17S</option>
+                        <option value="18S">18S</option>
+                        <option value="19S">19S</option>
+                      </select>
+                      <label for="zona">Zona:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="coordenada01"
+                        placeholder="Longitud"
+                        disabled
+                      />
+                      <label for="coordenada01" id="labelCoordenada01"
+                        >Longitud:</label
+                      >
+                      <div class="invalid-feedback">
+                        <strong>Error, </strong> Ingresar longitud.
+                      </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="coordenada02"
+                        placeholder="Latitud"
+                        disabled
+                      />
+                      <label for="coordenada02" id="labelCoordenada02"
+                        >Latitud:</label
+                      >
+                      <div class="invalid-feedback">
+                        <strong>Error, </strong> Ingresar latitud.
+                      </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <a
+                        href="#"
+                        class="btn btn-primary"
+                        id="graficarCoordenadas"
+                        ><i class="bi bi-feather2"></i> Graficar</a
+                      >
+                      <a
+                        href="#"
+                        class="btn btn-secondary"
+                        id="limpiarCoordenadas"
+                        ><i class="bi bi-trash"></i> Limpiar</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button
+                class="custom-menu-widget-item position-relative w-10 mb-2"
+                id="obtenerCoordenadas"
+              >
+                <img
+                  src="./assets/iconos/obtener_coordenadas.svg"
+                  alt=""
+                  class="w-100"
+                  style="margin-right: 5px"
+                />
+                <div class="custom-menu-widget-item-tooltip card">
+                  Obtener coordenadas
+                </div>
+              </button>
+              <button
+                class="custom-menu-widget-item position-relative w-10 mb-2"
+              >
+                <img
+                  src="./assets/iconos/calculo_superficie_perimetro.svg"
+                  alt=""
+                  class="w-100 custom-menu-widget-item-image-icon"
+                  style="
+                    margin-right: 5px;
+                    filter: invert(1) grayscale(100%) brightness(1000%);
+                  "
+                />
+                <div class="custom-menu-widget-item-tooltip card">
+                  Cálculo de superficie, perímetro
+                </div>
+                <div
+                  class="custom-menu-widget-item-popup card"
+                  style="max-height: 200px; overflow-y: auto"
+                >
+                  <div class="card-header custom-header">
+                    <span class="text-center"
+                      ><strong>Cálculo de superficie, perímetro</strong></span
+                    >
+                    <i class="bi bi-x-lg custom-btn-widget-item-poup-close"></i>
+                  </div>
+                  <div class="card-body">
+                    <div class="input-group mb-3">
+                      <label class="input-group-text" for="tipoCalculo"
+                        >Cálcular</label
+                      >
+                      <select class="form-select" id="tipoCalculo">
+                        <option value="None" selected>[Elegir]</option>
+                        <option value="LineString">Perímetro (m)</option>
+                        <option value="Polygon">Superficie (m2)</option>
+                      </select>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <a href="#" class="btn btn-secondary" id="limpiarCalculo"
+                        ><i class="bi bi-trash"></i> Limpiar</a
+                      >
+                      <a
+                        href="#"
+                        class="btn btn-info"
+                        id="descargarCalculo"
+                        style="display: none"
+                        ><i class="bi bi-download"></i> Descargar</a
+                      >
+                    </div>
+                    <div class="mb-3">
+                      <div id="mensajeCalcular"></div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button
+                class="custom-menu-widget-item position-relative w-10 mb-2"
+              >
+                <img
+                  src="./assets/iconos/imprimir.svg"
+                  alt=""
+                  class="w-100 custom-menu-widget-item-image-icon"
+                  style="
+                    margin-right: 5px;
+                    filter: invert(1) grayscale(100%) brightness(1000%);
+                  "
+                />
+                <div class="custom-menu-widget-item-tooltip card">Imprimir</div>
+                <div
+                  class="custom-menu-widget-item-popup card"
+                  style="max-height: 280px; overflow-y: auto"
+                >
+                  <div class="card-header custom-header">
+                    <span class="text-center"
+                      ><strong>Imprimir a formato PDF</strong></span
+                    >
+                    <i class="bi bi-x-lg custom-btn-widget-item-poup-close"></i>
+                  </div>
+                  <div class="card-body">
+                    <div class="form-floating mb-3">
+                      <select
+                        class="form-select"
+                        id="formatoPagina"
+                        aria-label="Formato de dimensiones de hoja"
+                      >
+                        <option value="a0">A0 (Lenta)</option>
+                        <option value="a1">A1</option>
+                        <option value="a2">A2</option>
+                        <option value="a3">A3</option>
+                        <option value="a4" selected>A4</option>
+                        <option value="a5">A5 (Rápida)</option>
+                      </select>
+                      <label for="formatoPagina">Formato:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <select
+                        class="form-select"
+                        id="resolucionImagen"
+                        aria-label="Resolución de la imágen"
+                      >
+                        <option value="72">72 dpi (Rápida)</option>
+                        <option value="150">150 dpi</option>
+                        <option value="300">300 dpi (Lenta)</option>
+                      </select>
+                      <label for="resolucionImagen">Formato:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <a href="#" class="btn btn-primary" id="exportarPdf"
+                        ><i class="bi bi-filetype-pdf"></i> Exportar</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <!--<button
+                class="custom-menu-widget-item position-relative w-10 mb-2"
+              >
+                <img
+                  src="./assets/iconos/sugerencias.svg"
+                  alt=""
+                  class="w-100"
+                  style="
+                    margin-right: 5px;
+                    filter: invert(1) grayscale(100%) brightness(1000%);
+                  "
+                />
+                <div class="custom-menu-widget-item-tooltip card">
+                  Envíanos tus sugerencias
+                </div>
+              </button>-->
+            </div>
+            <div
+              id="customButtonTiktokContent"
+              class="position-absolute custom-button-tiktok-plus"
+            >
+              <div class="position-relative custom-button-tiktok-plus-body">
+                <div
+                  class="position-absolute custom-button-tiktok-plus-body-content-items"
+                >
+                  <div class="custom-button-tiktok-plus-widget" id="home" data-title="Geoportal SDOT">
+                    <i class="bi bi-house-gear-fill"></i>
+                  </div>
+                  <div class="custom-button-tiktok-plus-widget" id="consultas" data-title="Consultas de demarcación">
+                    <img
+                      src="./assets/iconos/consultas_demarcacion.svg"
+                      alt=""
+                      class="w-50"
+                    />
+                  </div>
+                  <div class="custom-button-tiktok-plus-widget" id="tablero" data-title="Tablero territorial">
+                    <img
+                      src="./assets/iconos/tablero_territorial.svg"
+                      alt=""
+                      class="w-50"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                id="customButtonTiktokPlus"
+                class="custom-button-tiktok-plus-icon"
+              >
+                <i
+                  class="bi bi-plus-lg custom-button-tiktok-plus-icon-open"
+                ></i>
+                <i class="bi bi-x-lg custom-button-tiktok-plus-icon-close"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ..ZONA JS.. -->
+    <script
+      type="module"
+      src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+    ></script>
+    <script
+      type="module"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"
+    ></script>
+    <script
+      type="module"
+      src="https://unpkg.com/shpjs@latest/dist/shp.js"
+    ></script>
+    <script type="module" src="./main.js"></script>
+    <script type="module" src="./assets/js/controles.js"></script>
+    <script>
+      window.addEventListener(
+        "DOMContentLoaded",
+        (event) => {
+          const sidebarToggle = document.body.querySelector("#sidebarToggle");
+          if (sidebarToggle) {
+            sidebarToggle.addEventListener(
+              "click",
+              (event) => {
+                event.preventDefault();
+                document.body.classList.toggle("sb-sidenav-toggled");
+                localStorage.setItem(
+                  "sb|sidebar-toggle",
+                  document.body.classList.contains("sb-sidenav-toggled")
+                );
+              },
+              false
+            );
+          }
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

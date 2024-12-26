@@ -1,0 +1,302 @@
+@import "node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "node_modules/bootstrap-icons/font/bootstrap-icons.css";
+@import "assets/css/admin-default.css";
+@import "assets/css/custom.css";
+@import "node_modules/ol/ol.css";
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto-Regular'), url('assets/roboto/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto-Bold'), url('assets/roboto/Roboto-Bold.ttf') format('truetype');
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Roboto' !important;
+  font-size: 15px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.map:-webkit-full-screen {
+  height: 100%;
+  margin: 0;
+}
+.map:fullscreen {
+  height: 100%;
+}
+.map .ol-rotate {
+  top: 3em;
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
+.w-80{ width: 80%;}
+.w-20{ width: 20%;}
+.background-color-red {
+  background: rgb(191 ,9 ,9 ) !important;
+}
+
+.w-10 { width: 2.5rem; }
+.h-10 { height: 2.5rem; }
+
+.left-negative-100{ left: -100% !important;}
+.left-negative-150{ left: -150% !important;}
+.left-negative-200{ left: -200% !important;}
+.left-negative-250{ left: -250% !important;}
+.left-negative-300{ left: -300% !important;}
+.left-negative-350{ left: -350% !important;}
+.left-negative-400{ left: -400% !important;}
+.left-negative-450{ left: -450% !important;}
+
+/* PERSONALIZANDO COLORES DE BOOTSTRAP */
+/* Personaliza el color del interruptor Bootstrap */
+.form-switch .form-check-input:checked {
+  background-color: black; /* Cambia el color de fondo del interruptor a negro solo cuando está activado */
+}
+
+/* Opcional: Personaliza el color del interruptor Bootstrap en estado hover cuando está activado */
+.form-switch .form-check-input:checked:hover {
+  background-color: darkgray; /* Cambia el color de fondo del interruptor a gris oscuro en estado hover cuando está activado */
+}
+
+.bi-cloud-arrow-down:hover {
+  background-color: black; 
+      color: white; 
+      padding: 5px; 
+      border-radius: 5px;  
+}
+
+.card-title {
+  text-align: left;
+}
+
+.custom-description-body {
+  font-size: 12px;
+}
+
+.custom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.custom-header span {
+  flex: 1;
+  text-align: center;
+}
+
+.custom-header i {
+  margin-left: auto;
+}
+
+.list-group-item.active {
+  background-color: #696969;
+  border-color: #696969;;
+  color: #fff;
+}
+
+/* Estilos para el contenedor del efecto de carga */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.99);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   z-index: 9999; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+/* Estilos para el spinner de carga */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  border-top-color: #3498db;
+  animation: spin 1s linear infinite; /* Animación de rotación */
+}
+
+/* Estilos para el texto de carga */
+.loading-text {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+}
+
+.form-check-input:focus {
+  border-color: #000;
+  outline: 0;
+  box-shadow: 0 0 0 .25rem rgba(88,88,88,.25);
+}
+
+.form-check-input:checked {
+  background-color: #000;
+  border-color: #000;
+}
+
+/* Animación de rotación para el spinner */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.ol-popup {
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  bottom: 12px;
+  left: -50px;
+  min-width: 350px;
+  font-size: 12px;
+}
+.ol-popup:after, .ol-popup:before {
+  top: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.ol-popup:after {
+  border-top-color: white;
+  border-width: 10px;
+  left: 48px;
+  margin-left: -10px;
+}
+.ol-popup:before {
+  border-top-color: #cccccc;
+  border-width: 11px;
+  left: 48px;
+  margin-left: -11px;
+}
+.ol-popup-closer {
+  text-decoration: none;
+  position: absolute;
+  top: 2px;
+  right: 8px;
+  color: #bf0909;
+}
+.ol-popup-closer:after {
+  content: "✖";
+}
+.ol-scale-bar-inverted .ol-scale-singlebar-even {
+  background-color: var(--ol-background-color);
+}
+.ol-scale-bar-inverted .ol-scale-singlebar-odd {
+  background-color: var(--ol-subtle-foreground-color);;
+}
+.ol-mouse-position {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  right: 10%;
+  left: 51%;
+  transform: translateX(-50%);
+  bottom: 10px;
+  border-radius: 20px;
+  background: #fff;
+  top: 100%;
+  font-size: 11px;
+  position: absolute;
+}
+
+.ol-attribution ul {
+  margin: 0;
+  padding: 1px 0.5em;
+  color: var(--ol-foreground-color);
+  text-shadow: 0 0 2px var(--ol-background-color);
+  font-size: 10px;
+}
+
+table {
+  font-size: 12px;
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  border: 0px solid black;
+  padding: 1px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}
+
+[data-title]:hover:after {
+  opacity: 1;
+  transition: all 0.1s ease 0.5s;
+  visibility: visible;
+  left: -100%;
+  transform: translate(-70%, -100%);
+}
+[data-title]:after {
+  content: attr(data-title);
+  background-color: #333;
+  color: #fff;
+  font-size: 14px;
+  position: absolute;
+  padding: 3px 20px;
+  bottom: -1.6em;
+  left: -100%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  box-shadow: 1px 1px 3px #222222;
+  opacity: 0;
+  border: 1px solid #111111;
+  z-index: 99999;
+  visibility: hidden;
+  border-radius: 6px;
+}
+[data-title] {
+  position: relative;
+  display: inline-block;
+}
+
+.img-movil {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .ol-mouse-position {
+    display: none;
+  }
+
+  .img-escritorio {
+    display: none;
+  }
+
+  .img-movil {
+    display: inline-block;
+  }
+}

@@ -1,0 +1,707 @@
+body {
+    font-family:'Roboto';
+    font-size: 14px;
+}
+/* SOBREESCRIBIENDO CLASES */
+.btn-primary {
+    background-color: #0079a6;
+    border-color: #0079a6;
+}
+.btn-primary:hover {
+    background-color: #2598c3;
+    border-color: #2598c3;
+}
+.btn-primary:disabled, .btn-primary.disabled {
+    background-color: #8592a6;
+    border-color: #8592a6;
+}
+a.disabled{
+    color: #ccc;
+    border-color: #ccc;
+}
+.color-primary {
+    color: #193f57 !important;
+}
+
+/* AGRREGANDO FONT-FAMILY A VIRTUALSELECT */
+.vscomp-option-text,
+.vscomp-value-tag-content{font-family:'Roboto' !important;}
+
+/* ESTILOS DEL MAPA */
+.container-map {
+    height: calc(100% - 77px);
+    /* height: 100%; */
+}
+#page-content-wrapper {
+    position: relative !important;
+    height: 100vh !important;
+}
+
+#map {
+    /* height: 90.7vh; */
+    /* height: calc(100% - 100px); */
+    height: calc(100% - 30px);
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+#HomeButton {
+    position: absolute;
+    top: 95px;
+    left: 20px;
+    z-index: 50;
+  }
+
+/* borrar log esri del mapa */
+.esriControlsBR{ display: none;}
+
+#sidebar-wrapper .list-group { width: 21rem !important; max-width: 21rem !important; }
+body.sb-sidenav-toggled #wrapper #sidebar-wrapper { margin-left: -21rem; }
+#sidebar-wrapper {max-width: 21rem !important; }
+
+.sidebar-heading {background:#193f57;color:#fff;}
+.sidebar-heading .text{font-size: 13px;}
+
+.content-header { position: relative;height: 30px !important;}
+.content-header #sidebarToggle {
+    background: rgba(80,80,80,.9) !important;
+    color: #fff !important;position: absolute;
+    left: -1px;
+    font-size: 30px;
+    width: 50px;
+    border-radius: 0 !important;
+    border: none;
+    padding: 1px 0px !important;
+}
+.content-logo-header{
+    position: absolute;
+    height:44px;
+    /* left: 33%; */
+    width: 100%;
+    z-index: -1;
+}
+.content-flujo { margin-left:0 !important;margin-right: 0 !important; }
+.content-flujo .content-items .icon .tooltip-custom {
+    background: #193f57;
+    opacity: .92;
+    z-index: 9;
+    height: auto;
+    position: absolute;
+    left: 54px;
+    width: 260px;
+    font-size: 15px;
+    bottom: 10%;
+    border-radius: 10px;
+    color: #fff;
+    display: none;
+}
+.content-flujo .content-items .icon .tooltip-custom::before{
+    content: " ";
+    width: 0px;
+    height: 0px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid #193f57;
+    position: absolute;
+    left: -5px;
+    top: 50%;
+}
+.content-flujo .content-items .icon {
+    text-align: center; 
+    height: 50px;
+    width: 50px !important;
+    background: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.content-flujo .content-items .icon:after {
+    background: #0079a6 !important;
+    height: 50px;
+    width: 6px;
+    position: absolute;
+}
+.content-flujo .content-items .icon:hover,
+.content-flujo .content-items .icon.active {
+    background: #193f57 !important;
+    border-left: 4px;
+    border-color: #0079a6;
+    color: #fff !important;
+}
+
+
+.content-flujo .content-items .icon:hover .tooltip-custom { display: block;}
+.content-flujo .content-items .icon:hover::before {
+   display: inline;
+}
+
+.item-icon-circle {
+    background: #193f57;
+    color: #fff !important;
+    border-radius: 50%;
+    width: 40px;
+    text-align: center;
+    margin-right: 2px;
+    position: relative;
+}
+
+.tooltip-custom-widget{
+    position: absolute;
+    z-index: 99;
+    background: #0079a6;
+    width: max-content;
+    border-radius: 10px;
+    bottom: -30px;
+    padding: 2px 6px;
+    display: none;
+}
+.tooltip-custom-widget::before{
+    content: " ";
+    width: 0px;
+    height: 0px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid #0079a6;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    position: absolute;
+    left: 48%;
+    top: -30%;
+}
+
+.item-icon-circle:hover {background: #0079a6;;}
+.item-icon-circle:hover .tooltip-custom-widget { display: block;}
+.item-icon-circle:hover .tooltip-custom-widget.hover-right-12 { display: block;right: -12px;}
+.item-icon-circle:hover .tooltip-custom-widget.hover-right-38 { display: block;right: -38px;}
+.item-icon-circle:hover .tooltip-custom-widget.hover-right-8 { display: block;right: -8px;}
+.item-icon-circle i{ font-size:20px;}
+.title-unit {
+    background: #0079a6;
+    font-size: 15px;
+    padding: 10px 8px;
+    color: #fff;
+}
+.item-icon-circle:hover .tooltip-custom-widget.before-left-72::before {
+    left: 72% !important;
+}
+
+.item-icon-circle:hover .tooltip-custom-widget.before-left-36::before {
+    left: 36% !important;
+}
+
+button.nav-link { padding: 0.2rem .5rem; color: #fff; }
+button.nav-link img{
+    width: 40px;
+    height: auto;
+}
+button.nav-link .image-a{display: block;}
+button.nav-link .image-b{display: none;}
+button.nav-link.active {background: #0079a6 !important;}
+button.nav-link.active .image-a{display: none;}
+button.nav-link.active .image-b{display: block;}
+
+.item-flujo .image-a{display: block;}
+.item-flujo .image-b{display: none;}
+.item-flujo.active .image-a{display: none;}
+.item-flujo.active .image-b{display: block;}
+
+/* Editando colores del tag propio de libreria VirtualSelect*/
+.vscomp-value-tag{
+    border: 1px solid #0079a6 !important;
+}
+.vscomp-value-tag-clear-button i::before,
+.vscomp-value-tag-clear-button i::after {
+    background-color: #0079a6 !important;
+}
+.vscomp-value-tag-content{
+    color: #0079a6 !important;
+}
+
+/* tooltip de capas propias*/
+.content-render-tags-capas-propias span.tooltip-custom-capa-propia{
+    width: fit-content;
+    border-radius: 10px;
+    padding: 2px 6px;
+    color: #0079a6;
+    border: 1px solid #0079a6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.content-render-tags-capas-propias span.tooltip-custom-capa-propia-btn-close .vscomp-clear-icon:before,
+.content-render-tags-capas-propias span.tooltip-custom-capa-propia-btn-close .vscomp-clear-icon:after{
+    background-color: #0079a6 !important;
+}
+
+.vscomp-clear-button.toggle-button-child .vscomp-clear-icon:before,
+.vscomp-clear-button.toggle-button-child .vscomp-clear-icon:after{
+    background-color: #0079a6 !important;
+}
+
+.tooltip-custom-capa-propia-btn-close{
+    vertical-align: middle;
+    padding: 0px 2px;
+    display: flex;
+    margin-left: 4px;
+}
+
+.title-widget-cuustom{
+    color: #fff;
+    background: #193f57;
+    padding:4px 8px;
+    width: auto;
+    margin: 2px 4px;
+    font-size: .9rem !important;
+    border-radius: 3px;
+}
+
+
+#page-content-wrapper .footer-bar{
+    position: fixed;
+    background: #fff;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+}
+
+.content-search-atributos {
+    margin: 5px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content-search-atributos input{
+    width: 86%;
+    border: 1px solid #193f57;
+}
+.content-search-atributos i{
+    width: 12%;
+    text-align: center;
+    background: #193f57;
+    padding: 6px 4px;
+    color: #fff;
+}
+
+/* ICONO DE CARGA - LOADING  */
+.content-loading{
+    position: absolute;
+    width: auto;
+    z-index: 999;
+    border: 1px solid #93a3a9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 10px;
+    left: 20px;
+    box-shadow: 1px 1px 5px 2px #cfcfcf;
+    border-radius: 10px;
+    padding: 2px 0px 2px 10px;
+    display: none;
+}
+.content-loading .content-gif-loading img {
+    border-radius: 10px;
+    width: 80px; 
+}
+.content-loading .content-gif-loading span {color: #0079a6;}
+
+/* ESTILOS PARA ATRIBUTOS*/
+/* .capa-listado-atributo => div[class*="capa-listado-atributo"]  */
+div[class*="capa-listado-atributo"] h4{
+    font-size: .9rem !important;
+    margin: 10px 0 5px 9px !important;
+    font-weight: bold;
+}
+div[class*="capa-listado-atributo"] .list-title{    
+    margin-left: 15px;
+}
+div[class*="capa-listado-atributo"] .list-title li:nth-child(1) input{position: relative;}
+
+/* div[class*="capa-listado-atributo"] .list-title li:nth-child(1) input::before{
+    content: '';
+    width: 8px;
+    height: 2px;
+    background-color: #0079a6;
+    position: absolute;
+    left: -15px;
+    vertical-align: middle;
+    bottom: 6px;
+}  */
+div[class*="capa-listado-atributo"] .list-options{
+    margin: 0 0 4px 30px;
+}
+div[class*="capa-listado-atributo"] .list-options > li{
+    display: flex;
+    border: none;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    
+}
+div[class*="capa-listado-atributo"] .list-options > li > input{
+    margin-right: 4px;
+    width:10%;
+}
+div[class*="capa-listado-atributo"] .list-options > li > label{
+    width: 86%;
+}
+
+
+/* PARA LA TABLA DEL FOOTER */
+.content-table {
+    position: absolute;
+    bottom: -24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content-table .content-icon-table {
+    background: #eeeee5;
+    width: 100px;
+    height: 25px;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    
+}
+.content-table .content-icon-table .fa-caret-down{ display: none;}
+
+.content-table.mostrar-tabla .content-icon-table .fa-caret-down{ display: block;}
+.content-table.mostrar-tabla .content-icon-table .fa-caret-up{ display: none;}
+.content-table.mostrar-tabla{
+    bottom: 0px;
+    width: 100%;
+    
+}
+.content-table .content-data-table{
+    width: 100%;
+    height: 25px;
+}
+.content-table.mostrar-tabla .content-data-table{
+    background: #fefefe;
+    width: 100%;
+    height: 20vh;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+@media screen and (min-width: 1493px) {
+    .content-table {
+        bottom: -25px;
+    }
+ }
+
+body.sb-sidenav-toggled .content-table .content-icon-table { margin: 0 auto; }
+.content-table .content-icon-table {margin-left: -21rem;}
+
+/* //PARA COMPRIMIR Y DESCOMPRIMIR LOS ATRIBUTOS  */
+#LayerAtributes .list-group-item {
+    display: flex;
+}
+#LayerAtributes .list-group-item .custom-compress-atributos {
+    position: relative;
+    cursor: pointer;
+}
+#LayerAtributes .list-group-item .custom-compress-atributos i {
+    position: absolute;
+    left: -20px;
+    top: 4px;
+}
+/* #LayerAtributes .custom-compress-atributos .fa-plus { 
+    display: none;
+} */
+
+#LayerAtributes div[class^='capa-listado-atributo'] .custom-compress-atributos .fa-minus{display: none;}
+#LayerAtributes div[class^='capa-listado-atributo'] .list-options-atributos-for-search {display: none;}
+
+
+/* PARA ELIMINAR EL FOOTER PROPIO DEL MAPA ESRI, LOS CREDITOS */
+.esri-attribution{display: none;}
+
+/* PARA EL BOTON DE ESTADISTICAS QUE SE ENCUENTRO EN LA LISTA DE ATRIBUTOS */
+.content-btn-estadisticas {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+.content-btn-estadisticas button{
+    width: 95%;
+}
+
+/* PARA EL ACORDEON DE GLOSARIO DE CAPAS  */
+#accordionFlushExample .accordion-item {margin-bottom: 4px;}
+#accordionFlushExample .accordion-item .accordion-button { color: #fff;background: #0079a6; padding: 8px 20px;border-radius: 4px; }
+#accordionFlushExample .accordion-item .accordion-button:focus{box-shadow: none !important;}
+#accordionFlushExample .accordion-item  .accordion-collapse{ background: #fff; border: 1px solid #0079a6; margin-top: 4px; border-radius: 5px; }
+#accordionFlushExample .accordion-item  .accordion-button.collapsed::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  }
+#accordionFlushExample .accordion-item .accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    transform: rotate(-180deg);
+}
+
+
+ /* PARA LISTA DE CAPAS INTEROPERABLES  */
+#widgetCapasInterOperables {margin: 6px 4px;}
+.capa-listado-capas-interoperables{ margin-top: 4px; }
+.capa-listado-capas-interoperables .list-title li{
+    background: #0079a6;
+    border-radius: 5px;
+    font-size: .85rem;
+    padding: 0.2rem;
+    color: #fff;
+}
+.capa-listado-capas-interoperables .list-title li label {margin-top: 2px;}
+.capa-listado-capas-interoperables .list-options{
+    border-radius: 5px;
+    border: 1px solid #0079a6;
+    margin: 4px 0 8px 0;
+    display: none;
+}
+.capa-listado-capas-interoperables .custom-compress-interoperables .custom-compress-atributos-fa-minus{ display: none;}
+
+.capa-listado-capas-interoperables .list-group-item{ display: flex;}
+.capa-listado-capas-interoperables .list-group-item .form-check-input{ margin-right: 4px;min-width: 16px !important;}
+
+/* EL BOTON DE DESCARGAR CAPAS   */
+.btn-blanco-azul {
+    background-color: #fff;
+    color: #0079a6;
+    border: 1px solid #0079a6;
+    border-radius: 10px !important;
+    font-size: 0.75rem;
+}
+
+/* LISTA FILTRO NIVELES  */
+.list-group-filtro-nivel,
+.list-group-filtro-gestion-oin,
+.list-group-filtro-gestion-acrh,
+.list-group-filtro-seh-acrh,
+.list-group-filtro-seh-oin,
+.list-group-filtro-tipologia-acrh ,
+.list-group-filtro-tipologia-oin
+{ margin: 0 !important;}
+
+.list-group-filtro-nivel .list-group-item,
+.list-group-filtro-gestion-oin .list-group-item,
+.list-group-filtro-gestion-acrh .list-group-item,
+.list-group-filtro-seh-acrh .list-group-item,
+.list-group-filtro-seh-oin .list-group-item,
+.list-group-filtro-tipologia-acrh .list-group-item,
+.list-group-filtro-tipologia-oin .list-group-item
+{ align-items: center;}
+
+
+#popupIdentificador{
+    position: absolute;
+    top: 10px;
+    left: 80px;
+    z-index: 51;
+    max-width: 350px !important;
+    width: 100% !important;
+    min-width: 17rem !important;
+    height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 10px;
+    padding: 5px;
+    display: none;
+}
+
+#popupLeyenda{
+    position: absolute;
+    top: 200px;
+    left: 20px;
+    z-index: 50;
+    max-width: 350px !important;
+    width: 100% !important;
+    min-width: 17rem !important;
+    height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#popupLeyenda #identicadorLayendaWidget { /* EL SEGUNOD ID ES CREADO POR EL ESRI  */
+    height: 260px;
+    overflow-x: auto;
+}
+
+#popupAtributos{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index: 52;
+    max-width: 300px !important;
+    width: 100% !important;
+    min-width: 17rem !important;
+    height: 450px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 10px;
+    padding: 5px;
+    display: none;
+}
+#popupAtributos #LayerAtributes{/* EL SEGUNOD ID ES CREADO POR EL ESRI  */
+    height: 371px;
+    overflow: auto;
+}
+
+#popupGlosarioCapas{
+    position: absolute;
+    top: 10px;
+    right: 40px;
+    z-index: 49;
+    max-width: 300px !important;
+    width: 100% !important;
+    min-width: 17rem !important;
+    height: 450px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 10px;
+    padding: 5px;
+    display: none;
+}
+#popupGlosarioCapas #widgetGlosarioCapas {/* EL SEGUNOD ID ES CREADO POR EL ESRI  */
+    height: 395px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#popupImprimir{
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    z-index: 52;
+    max-width: 300px !important;
+    width: 100% !important;
+    min-width: 17rem !important;
+    height: 450px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 10px;
+    padding: 5px;
+    display: none;
+}
+#popupImprimir #widgetPrintLayer{/* EL SEGUNOD ID ES CREADO POR EL ESRI  */
+    height: 410px;
+}
+
+#popupCapasInteroperables{
+    position: absolute;
+    top: 10px;
+    right: 60px;
+    z-index: 53;
+    max-width: 300px !important;
+    width: 100% !important;
+    min-width: 17rem !important;
+    height: 450px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 10px;
+    padding: 5px;
+    display: none;
+}
+
+#popupEstadisticas{
+    position: absolute;
+    top: 50px;
+    left: 120px;
+    z-index: 55;
+    max-width: 650px !important;
+    width: 100% !important;
+    min-width: 17rem !important;
+    height: 450px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 10px;
+    padding: 5px;
+    display: none;
+}
+#popupEstadisticas #widgetEstadisticasLayer {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    height: 410px;
+    overflow-x: auto;
+}
+
+#popupSwipe{
+    position: absolute;
+    bottom: 120px;
+    left: 70px;
+    z-index: 54;
+    max-width: 300px !important;
+    width: 100% !important;
+    min-width: 10rem !important;
+    height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 10px;
+    padding: 5px;
+    display: none;
+}
+#popupSwipe #layerWidgetSwipe { padding: 4px; }
+#popupSwipe #detenerSwipe{display: none;}
+
+
+
+/* ESTILOS PARA EL WIDGET DE DIBUJO DE POLIGONO */
+.esri-sketch__panel{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.esri-sketch__panel .esri-sketch__tool-section{
+    border-right: 1px solid #fff !important;
+}
+
+/* PARA EL CAROUSEL DEL TUTORIAL */
+/* .owl-carousel{
+    display: flex !important;  
+    flex-direction: row;   
+    justify-content: center;  
+} */
+.owl-item > div{text-align: center;}
+.owl-carousel .owl-stage {
+    display: flex;
+    align-items: center;
+  }
+  
+.owl-carousel .caption {
+    text-align: center;
+}
+.item-custom-image {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.text-carousel{
+    color: #0079a6;
+    font-weight: bold;
+    margin-top: 5px;
+}
